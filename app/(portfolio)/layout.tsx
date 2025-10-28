@@ -1,9 +1,10 @@
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import "../globals.css"
-import { ClerkProvider } from "@clerk/nextjs"
-import { SanityLive } from "@/sanity/lib/live"
-
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "../globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { SanityLive } from "@/sanity/lib/live";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,13 +29,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <SanityLive />
-      </body>
-    </html>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <SidebarProvider>
+            <SidebarInset>{children}</SidebarInset>
+            <AppSidebar side="right" />
+          </SidebarProvider>
+          <SanityLive />
+        </body>
+      </html>
     </ClerkProvider>
-  )
+  );
 }

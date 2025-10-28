@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import { useClerk, useUser } from "@clerk/nextjs"
-import { MessageCircle, X } from "lucide-react"
-import Image from "next/image"
-import { useState } from "react"
-import { useSidebar } from "@/components/ui/sidebar"
+import { useClerk, useUser } from "@clerk/nextjs";
+import { MessageCircle, X } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { useSidebar } from "@/components/ui/sidebar";
 
 interface ProfileImageProps {
-  imageUrl: string
-  firstName: string
-  lastName: string
+  imageUrl: string;
+  firstName: string;
+  lastName: string;
 }
 
 export function ProfileImage({
   imageUrl,
   firstName,
-  lastName
+  lastName,
 }: ProfileImageProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const { toggleSidebar, open } = useSidebar()
-  const { isSignedIn } = useUser()
-  const { openSignIn } = useClerk()
+  const [isHovered, setIsHovered] = useState(false);
+  const { toggleSidebar, open } = useSidebar();
+  const { isSignedIn } = useUser();
+  const { openSignIn } = useClerk();
 
   return (
     <button
@@ -31,7 +31,7 @@ export function ProfileImage({
       onMouseLeave={() => setIsHovered(false)}
       aria-label="Toggle AI Chat Sidebar"
     >
-      <Image 
+      <Image
         src={imageUrl}
         alt={`${firstName} ${lastName}`}
         fill
@@ -49,7 +49,8 @@ export function ProfileImage({
 
       <div
         className={`absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${
-          isHovered ? "opacity-100" : "opacity-0" }`}
+          isHovered ? "opacity-100" : "opacity-0"
+        }`}
       >
         <div className="text-center space-y-3">
           {open ? (
@@ -67,5 +68,5 @@ export function ProfileImage({
         </div>
       </div>
     </button>
-  )
+  );
 }

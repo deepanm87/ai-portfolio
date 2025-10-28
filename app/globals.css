@@ -118,3 +118,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes cell-ripple {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-cell-ripple {
+  animation: cell-ripple var(--duration, 500ms) ease-out var(--delay, 0ms);
+}

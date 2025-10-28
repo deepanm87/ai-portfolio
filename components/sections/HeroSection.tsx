@@ -1,9 +1,10 @@
-import Link from "next/link"
-import { defineQuery } from "next-sanity"
-import { urlFor } from "@/sanity/lib/image"
-import { sanityFetch } from "@/sanity/lib/live"
-import { ProfileImage } from "./ProfileImage"
-
+import Link from "next/link";
+import { defineQuery } from "next-sanity";
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+import { urlFor } from "@/sanity/lib/image";
+import { sanityFetch } from "@/sanity/lib/live";
+import { ProfileImage } from "./ProfileImage";
 
 const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
   firstName,
@@ -20,13 +21,13 @@ const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
   socialLinks,
   yearsOfExperience,
   profileImage
-}`)
+}`);
 
 async function HeroSection() {
-  const { data: profile } = await sanityFetch({ query: HERO_QUERY })
+  const { data: profile } = await sanityFetch({ query: HERO_QUERY });
 
   if (!profile) {
-    return null
+    return null;
   }
 
   return (
@@ -34,6 +35,7 @@ async function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden"
     >
+      <BackgroundRippleEffect rows={8} cols={27} cellSize={56} />
       <div className="relative z-10 container mx-auto max-w-6xl">
         <div className="@container">
           <div className="grid grid-cols-1 @3xl:grid-cols-2 gap-8 @lg:gap-12 items-center">
@@ -42,10 +44,20 @@ async function HeroSection() {
                 {profile.firstName}{" "}
                 <span className="text-primary">{profile.lastName}</span>
               </h1>
-              { profile.headlineStaticText &&
-                profile.headlineAnimatedWords &&
-                profile.headlineAnimatedWords.length > 0
-              }
+              {profile.headlineStaticText &&
+              profile.headlineAnimatedWords &&
+              profile.headlineAnimatedWords.length > 0 ? (
+                <LayoutTextFlip
+                  text={profile.headlineStaticText}
+                  words={profile.headlineAnimatedWords}
+                  duration={profile.headlineAnimationDuration || 3000}
+                  className="text-xl @md/hero:text-2xl @lg/hero:text-3xl text-muted-foreground font-medium"
+                />
+              ) : (
+                <p className="text-xl @md/hero:text-2xl @lg/hero:text-3xl text-muted-foreground font-medium">
+                  {profile.headline}
+                </p>
+              )}
               <p className="text-base @md/hero:text-lg text-muted-foreground leading-relaxed">
                 {profile.shortBio}
               </p>
@@ -72,7 +84,7 @@ async function HeroSection() {
                       LinkedIn
                     </Link>
                   )}
-                  { profile.socialLinks.website && (
+                  {profile.socialLinks.website && (
                     <Link
                       href={profile.socialLinks.website}
                       target="_blank"
@@ -86,13 +98,13 @@ async function HeroSection() {
               )}
 
               <div className="flex flex-wrap gap-4 @md/hero:gap-6 pt-4 text-xs @md/hero:text-sm text-muted-foreground">
-                { profile.email && (
+                {profile.email && (
                   <div className="flex items-center gap-2">
                     <span>📧</span>
                     <span className="truncate">{profile.email}</span>
                   </div>
-                ) }
-                { profile.location && (
+                )}
+                {profile.location && (
                   <div className="flex items-center gap-2">
                     <span>📍</span>
                     <span>{profile.location}</span>
@@ -108,12 +120,11 @@ async function HeroSection() {
             </div>
 
             {profile.profileImage && (
-              <ProfileImage 
+              <ProfileImage
                 imageUrl={urlFor(profile.profileImage)
                   .width(600)
                   .height(600)
-                  .url()
-                }
+                  .url()}
                 firstName={profile.firstName || ""}
                 lastName={profile.lastName || ""}
               />
@@ -122,7 +133,7 @@ async function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default HeroSection
+export default HeroSection;

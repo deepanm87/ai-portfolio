@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity"
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "skill",
@@ -9,7 +9,7 @@ export default defineType({
       name: "name",
       title: "Skill Name",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "category",
@@ -28,37 +28,38 @@ export default defineType({
           { title: "Design", value: "design" },
           { title: "Tools", value: "tools" },
           { title: "Soft Skills", value: "soft-skills" },
-          { title: "Other", value: "other" }
-        ]
+          { title: "Other", value: "other" },
+        ],
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "percentage",
       title: "Proficiency Percentage",
       type: "number",
-      validation: Rule => Rule.min(0)
+      validation: (Rule) => Rule.min(0),
     }),
     defineField({
       name: "color",
       title: "Brand Color",
       type: "string",
-      description: "Hex color code for the skill badge (e.g. #61DAFB for React)"
-    })
+      description:
+        "Hex color code for the skill badge (e.g. #61DAFB for React)",
+    }),
   ],
   preview: {
     select: {
       title: "name",
       subtitle: "category",
-      proficiency: "proficiency"
+      proficiency: "proficiency",
     },
     prepare(selection) {
-      const { title, subtitle, proficiency } = selection
+      const { title, subtitle, proficiency } = selection;
       return {
         title: title,
-        subtitle: `${subtitle} - ${proficiency}`
-      }
-    }
+        subtitle: `${subtitle} - ${proficiency}`,
+      };
+    },
   },
   orderings: [
     {
@@ -66,8 +67,8 @@ export default defineType({
       name: "categoryName",
       by: [
         { field: "category", direction: "asc" },
-        { field: "name", direction: "asc" }
-      ]
-    }
-  ]
-})
+        { field: "name", direction: "asc" },
+      ],
+    },
+  ],
+});

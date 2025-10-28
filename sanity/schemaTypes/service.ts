@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity"
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "service",
@@ -9,7 +9,7 @@ export default defineType({
       name: "title",
       title: "Service Title",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
@@ -17,18 +17,18 @@ export default defineType({
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "icon",
       title: "Icon/Image",
       type: "image",
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      description: "Icon or illustration representing the service"
+      description: "Icon or illustration representing the service",
     }),
     defineField({
       name: "shortDescription",
@@ -36,34 +36,34 @@ export default defineType({
       type: "text",
       rows: 2,
       description: "Brief one-liner",
-      validation: Rule => Rule.max(150)
+      validation: (Rule) => Rule.max(150),
     }),
     defineField({
       name: "fullDescription",
       title: "Full Description",
       type: "array",
       of: [{ type: "block" }],
-      description: "Detailed description of the service"
+      description: "Detailed description of the service",
     }),
     defineField({
       name: "features",
       title: "Key Features",
       type: "array",
       of: [{ type: "string" }],
-      description: "Bullet points of what's included"
+      description: "Bullet points of what's included",
     }),
     defineField({
       name: "technologies",
-      title:"Technologies",
+      title: "Technologies",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "skill" }] }]
+      of: [{ type: "reference", to: [{ type: "skill" }] }],
     }),
     defineField({
       name: "deliverables",
       title: "Deliverables",
       type: "array",
       of: [{ type: "string" }],
-      description: "What clients receive"
+      description: "What clients receive",
     }),
     defineField({
       name: "pricing",
@@ -73,7 +73,7 @@ export default defineType({
         {
           name: "startingPrice",
           title: "Starting Price (USD)",
-          type: "number"
+          type: "number",
         },
         {
           name: "priceType",
@@ -84,56 +84,56 @@ export default defineType({
               { title: "Per Hour", value: "hourly" },
               { title: "Per Project", value: "project" },
               { title: "Monthly Retainer", value: "monthly" },
-              { title: "Custom Quote", value: "custom" }
-            ]
-          }
+              { title: "Custom Quote", value: "custom" },
+            ],
+          },
         },
         {
           name: "description",
           title: "Pricing Description",
           type: "text",
-          rows: 2
-        }
-      ]
+          rows: 2,
+        },
+      ],
     }),
     defineField({
       name: "timeline",
       title: "Typical Timeline",
       type: "string",
-      description: "E.g., '2-4 weeks', '1-3 months' "
+      description: "E.g., '2-4 weeks', '1-3 months' ",
     }),
     defineField({
       name: "featured",
       title: "Featured Service",
       type: "boolean",
-      initialValue: false
+      initialValue: false,
     }),
     defineField({
       name: "order",
       title: "Display Order",
       type: "number",
-      initialValue: 0
-    })
+      initialValue: 0,
+    }),
   ],
   preview: {
     select: {
       title: "title",
       media: "icon",
-      featured: "featured"
+      featured: "featured",
     },
     prepare(selection) {
-      const { title, media, featured } = selection
+      const { title, media, featured } = selection;
       return {
-        title: featured ? `⭐ ${title}`: title,
-        media: media
-      }
-    }
+        title: featured ? `⭐ ${title}` : title,
+        media: media,
+      };
+    },
   },
   orderings: [
     {
       title: "Display Order",
       name: "orderAsc",
-      by: [{ field: "order", direction: "asc" }]
-    }
-  ]
-})
+      by: [{ field: "order", direction: "asc" }],
+    },
+  ],
+});

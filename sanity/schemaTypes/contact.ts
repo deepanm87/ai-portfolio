@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity"
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "contact",
@@ -9,13 +9,13 @@ export default defineType({
       name: "name",
       title: "Name",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "email",
       title: "Email",
       type: "string",
-      validation: Rule => Rule.required().email()
+      validation: (Rule) => Rule.required().email(),
     }),
     defineField({
       name: "subject",
@@ -27,13 +27,13 @@ export default defineType({
       title: "Message",
       type: "text",
       rows: 5,
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "submittedAt",
       title: "submitted At",
       type: "datetime",
-      initialValue: () => new Date().toISOString()
+      initialValue: () => new Date().toISOString(),
     }),
     defineField({
       name: "status",
@@ -42,49 +42,49 @@ export default defineType({
       options: {
         list: [
           { title: "New", value: "new" },
-          { title: "Archived", value: "archived" }
-        ]
+          { title: "Archived", value: "archived" },
+        ],
       },
-      initialValue: "new"
+      initialValue: "new",
     }),
     defineField({
       name: "notes",
       title: "Internal Notes",
       type: "text",
       rows: 3,
-      description: "Private notes about this inquiry"
-    })
+      description: "Private notes about this inquiry",
+    }),
   ],
   preview: {
     select: {
       title: "name",
       subtitle: "email",
-      status: "status"
+      status: "status",
     },
     prepare(selection) {
-      const { title, subtitle, status } = selection
+      const { title, subtitle, status } = selection;
       const statusEmoji = {
         new: "🆕",
-        archived: "📁"
-      }
+        archived: "📁",
+      };
       return {
         title: `${
-        statusEmoji[status as keyof typeof statusEmoji] || ""
+          statusEmoji[status as keyof typeof statusEmoji] || ""
         } ${title}`,
-         subtitle: subtitle
-      }
-    }
+        subtitle: subtitle,
+      };
+    },
   },
   orderings: [
     {
       title: "Newest First",
       name: "submittedDesc",
-      by: [{ field: "submittedAt", direction: "desc" }]
+      by: [{ field: "submittedAt", direction: "desc" }],
     },
     {
       title: "Status",
       name: "status",
-      by: [{ field: "status", direction: "asc" }]
-    }
-  ]
-})
+      by: [{ field: "status", direction: "asc" }],
+    },
+  ],
+});

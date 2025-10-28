@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity"
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "certification",
@@ -9,85 +9,85 @@ export default defineType({
       name: "name",
       title: "Certification Name",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "issuer",
       title: "Issuing Organization",
       type: "string",
       description: "E.g., 'AWS', 'Google Cloud', 'Microsoft'",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "issueDate",
       title: "Issue Date",
       type: "date",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "expiryDate",
       title: "Expiry Date",
       type: "date",
-      description: "Leave blank if certification doesn't expire"
+      description: "Leave blank if certification doesn't expire",
     }),
     defineField({
       name: "credentialId",
       title: "Credential ID",
       type: "string",
-      description: "Certificate Id or badge number"
+      description: "Certificate Id or badge number",
     }),
     defineField({
       name: "credentialUrl",
       title: "Credential URL",
       type: "url",
-      description: "Link to verify the certification"
+      description: "Link to verify the certification",
     }),
     defineField({
       name: "logo",
       title: "Badge/Logo",
       type: "image",
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      description: "Upload certification badge or logo"
+      description: "Upload certification badge or logo",
     }),
     defineField({
       name: "description",
       title: "Description",
       type: "text",
       rows: 3,
-      description: "What skills or knowledge this certification represents"
+      description: "What skills or knowledge this certification represents",
     }),
     defineField({
       name: "skills",
       title: "Related Skills",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "skill" }] }]
+      of: [{ type: "reference", to: [{ type: "skill" }] }],
     }),
     defineField({
       name: "order",
       title: "Display Order",
       type: "number",
-      initialValue: 0
-    })
+      initialValue: 0,
+    }),
   ],
   preview: {
     select: {
       title: "name",
       subtitle: "issuer",
-      media: "logo"
-    }
+      media: "logo",
+    },
   },
   orderings: [
     {
       title: "Display Order",
       name: "orderAsc",
-      by: [{ field: "order", direction: "asc" }]
+      by: [{ field: "order", direction: "asc" }],
     },
     {
       title: "Newest First",
       name: "dateDesc",
-      by: [{ field: "issueDate", direction: "desc" }]
-    }
-  ]
-})
+      by: [{ field: "issueDate", direction: "desc" }],
+    },
+  ],
+});

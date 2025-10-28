@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity"
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "blog",
@@ -9,7 +9,7 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
@@ -17,9 +17,9 @@ export default defineType({
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "excerpt",
@@ -27,22 +27,22 @@ export default defineType({
       type: "text",
       rows: 3,
       description: "Brief summary for preview cards",
-      validation: Rule => Rule.max(200)
+      validation: (Rule) => Rule.max(200),
     }),
     defineField({
       name: "featuredImage",
       title: "Featured Image",
       type: "image",
       options: {
-        hotspot: true
+        hotspot: true,
       },
       fields: [
         {
           name: "alt",
           type: "string",
-          title: "Alternative Text"
-        }
-      ]
+          title: "Alternative Text",
+        },
+      ],
     }),
     defineField({
       name: "category",
@@ -58,9 +58,9 @@ export default defineType({
           { title: "Opinion", value: "opinion" },
           { title: "Project Showcase", value: "showcase" },
           { title: "Best Practices", value: "best-practices" },
-          { title: "News", value: "news" }
-        ]
-      }
+          { title: "News", value: "news" },
+        ],
+      },
     }),
     defineField({
       name: "tags",
@@ -68,47 +68,47 @@ export default defineType({
       type: "array",
       of: [{ type: "string" }],
       options: {
-        layout: "tags"
-      }
+        layout: "tags",
+      },
     }),
     defineField({
       name: "publishedAt",
       title: "Published Date",
       type: "datetime",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "readTime",
       title: "Read Time (minutes)",
       type: "number",
-      description: "Estimated reading time"
-    })
+      description: "Estimated reading time",
+    }),
   ],
   preview: {
     select: {
       title: "title",
       media: "featuredImage",
-      category: "category"
+      category: "category",
     },
     prepare(selection) {
-      const { title, media, category } = selection
+      const { title, media, category } = selection;
       return {
         title: title,
         subtitle: category || "Uncategorized",
-        media: media
-      } 
-    }
+        media: media,
+      };
+    },
   },
   orderings: [
     {
       title: "Published Date, Newest",
       name: "publishedDesc",
-      by: [{ field: "publishedAt", direction: "desc" }]
+      by: [{ field: "publishedAt", direction: "desc" }],
     },
     {
       title: "Published Date, Oldest",
       name: "publishedAsc",
-      by: [{ field: "publishedAt", direction: "asc" }]
-    }
-  ]
-})
+      by: [{ field: "publishedAt", direction: "asc" }],
+    },
+  ],
+});

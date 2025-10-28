@@ -13,8 +13,8 @@ import {
   StarIcon,
   TagIcon,
   UserIcon,
-} from "@sanity/icons"
-import type { StructureResolver } from "sanity/structure"
+} from "@sanity/icons";
+import type { StructureResolver } from "sanity/structure";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
@@ -177,4 +177,4 @@ export const structure: StructureResolver = (S) =>
             .schemaType("siteSettings")
             .documentId("singleton-siteSettings"),
         ),
-    ])
+    ]);
