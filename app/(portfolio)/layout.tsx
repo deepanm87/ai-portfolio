@@ -1,9 +1,12 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import { SanityLive } from "@/sanity/lib/live";
+import "../globals.css";
+import { draftMode } from "next/headers"
+import Script from "next/script"
 import { AppSidebar } from "@/components/app-sidebar";
+import SidebarToggle from "@/components/SidebarToggle"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 const geistSans = Geist({
@@ -32,9 +35,17 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+
+          <Script 
+            src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
+            strategy="afterInteractive"
+          />
           <SidebarProvider>
             <SidebarInset>{children}</SidebarInset>
+
             <AppSidebar side="right" />
+
+            <SidebarToggle />
           </SidebarProvider>
           <SanityLive />
         </body>
