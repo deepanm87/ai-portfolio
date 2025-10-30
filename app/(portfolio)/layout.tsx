@@ -6,8 +6,10 @@ import "../globals.css";
 import { draftMode } from "next/headers"
 import Script from "next/script"
 import { AppSidebar } from "@/components/app-sidebar"
+import { ModeToggle } from "@/components/DarkModeToggle"
 import { FloatingDock } from "@/components/FloatingDock"
 import SidebarToggle from "@/components/SidebarToggle"
+import { ThemeProvider } from "@/components/ThemeProvider"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 const geistSans = Geist({
@@ -37,19 +39,33 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
 
-          <Script 
-            src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
-            strategy="afterInteractive"
-          />
-          <SidebarProvider defaultOpen={false}>
-            <SidebarInset>{children}</SidebarInset>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Script 
+              src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
+              strategy="afterInteractive"
+            />
+            <SidebarProvider defaultOpen={false}>
+              <SidebarInset>{children}</SidebarInset>
 
-            <AppSidebar side="right" />
+              <AppSidebar side="right" />
 
-            <FloatingDock />
-            <SidebarToggle />
-          </SidebarProvider>
+              <FloatingDock />
+              <SidebarToggle />
+
+              <div className="fixed md:bottom-6 md:right-24 top-4 right-18 md:top-auto md:left-auto z-20">
+                <div className="w-10 h-10 md:w-12 md:h-12">
+                  <ModeToggle />
+                </div>
+              </div>
+            </SidebarProvider>
           <SanityLive />
+
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
