@@ -1,15 +1,17 @@
-import { AboutSection }  from "@/components/sections/AboutSection"
-import HeroSection from "@/components/sections/HeroSection"
-import { TestimonialsSection } from "./sections/TestimonialsSection"
-import { SkillsSection } from "./sections/SkillsSection"
-import { ExperienceSection } from "./sections/ExperienceSection"
-import { EducationSection } from "./sections/EducationSection"
-import { ProjectsSection } from "./sections/ProjectsSection"
-import { CertificationsSection } from "./sections/CertificationsSection"
-import { AchievementSection } from "./sections/AchievementsSections"
-import { ServicesSection } from "./sections/ServicesSection"
-import { BlogSection } from "./sections/BlogSection"
-import { ContactSection } from "./sections/ContactSection"
+import {
+  AboutSection,
+  AchievementsSection,
+  BlogSection,
+  CertificationsSection,
+  ContactSection,
+  EducationSection,
+  ExperienceSection,
+  HeroSection,
+  ProjectsSection,
+  ServicesSection,
+  SkillsSection,
+  TestimonialsSection
+} from "@/components/sections"
 
 export default async function PortfolioContent() {
   return (
@@ -22,7 +24,7 @@ export default async function PortfolioContent() {
       <EducationSection />
       <ProjectsSection />
       <CertificationsSection />
-      <AchievementSection />
+      <AchievementsSection />
       <ServicesSection />
       <BlogSection />
       <ContactSection />

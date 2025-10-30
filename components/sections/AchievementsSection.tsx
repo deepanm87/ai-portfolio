@@ -18,7 +18,7 @@ const ACHIEVEMENTS_QUERY =
     order
   }`)
 
-export async function AchievementSection() {
+export async function AchievementsSection() {
   const { data: achievements } = await sanityFetch({ query: ACHIEVEMENTS_QUERY })
 
   if (!achievements || achievements.length === 0) {
