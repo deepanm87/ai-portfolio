@@ -5,8 +5,10 @@ import { SanityLive } from "@/sanity/lib/live";
 import "../globals.css";
 import { draftMode } from "next/headers"
 import Script from "next/script"
+import { VisualEditing } from "next-sanity/visual-editing"
 import { AppSidebar } from "@/components/app-sidebar"
 import { ModeToggle } from "@/components/DarkModeToggle"
+import { DisableDraftMode } from "@/components/DisableDraftMode";
 import { FloatingDock } from "@/components/FloatingDock"
 import SidebarToggle from "@/components/SidebarToggle"
 import { ThemeProvider } from "@/components/ThemeProvider"
@@ -27,14 +29,14 @@ export const metadata: Metadata = {
   description: "a customizable portfolio with AI support",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
@@ -65,6 +67,12 @@ export default function RootLayout({
             </SidebarProvider>
           <SanityLive />
 
+          {(await draftMode()).isEnabled && (
+            <>
+              <VisualEditing />
+              <DisableDraftMode />
+            </>
+          )}
           </ThemeProvider>
         </body>
       </html>
