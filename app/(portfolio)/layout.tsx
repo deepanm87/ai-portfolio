@@ -5,7 +5,8 @@ import { SanityLive } from "@/sanity/lib/live";
 import "../globals.css";
 import { draftMode } from "next/headers"
 import Script from "next/script"
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/app-sidebar"
+import { FloatingDock } from "@/components/FloatingDock"
 import SidebarToggle from "@/components/SidebarToggle"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
@@ -45,6 +46,7 @@ export default function RootLayout({
 
             <AppSidebar side="right" />
 
+            <FloatingDock />
             <SidebarToggle />
           </SidebarProvider>
           <SanityLive />
