@@ -9,6 +9,7 @@ import { CertificationsSection } from "./sections/CertificationsSection"
 import { AchievementSection } from "./sections/AchievementsSections"
 import { ServicesSection } from "./sections/ServicesSection"
 import { BlogSection } from "./sections/BlogSection"
+import { ContactSection } from "./sections/ContactSection"
 
 export default async function PortfolioContent() {
   return (
@@ -24,6 +25,7 @@ export default async function PortfolioContent() {
       <AchievementSection />
       <ServicesSection />
       <BlogSection />
+      <ContactSection />
     </>
   )
 }
