@@ -5,6 +5,10 @@ import { SkillsSection } from "./sections/SkillsSection"
 import { ExperienceSection } from "./sections/ExperienceSection"
 import { EducationSection } from "./sections/EducationSection"
 import { ProjectsSection } from "./sections/ProjectsSection"
+import { CertificationsSection } from "./sections/CertificationsSection"
+import { AchievementSection } from "./sections/AchievementsSections"
+import { ServicesSection } from "./sections/ServicesSection"
+import { BlogSection } from "./sections/BlogSection"
 
 export default async function PortfolioContent() {
   return (
@@ -16,6 +20,10 @@ export default async function PortfolioContent() {
       <ExperienceSection />
       <EducationSection />
       <ProjectsSection />
+      <CertificationsSection />
+      <AchievementSection />
+      <ServicesSection />
+      <BlogSection />
     </>
   )
 }
