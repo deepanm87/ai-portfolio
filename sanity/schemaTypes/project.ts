@@ -22,6 +22,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "tagline",
+      title: "tagline",
+      type: "string",
+      validation: Rule => Rule.required()
+    }),
+    defineField({
       name: "coverImage",
       title: "Cover Image",
       type: "image",
