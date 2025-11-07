@@ -18,7 +18,6 @@ export default async function PortfolioContent() {
     <>
       <HeroSection />
       <AboutSection />
-      <TestimonialsSection />
       <SkillsSection />
       <ExperienceSection />
       <EducationSection />
@@ -27,6 +26,7 @@ export default async function PortfolioContent() {
       <AchievementsSection />
       <ServicesSection />
       <BlogSection />
+      <TestimonialsSection />
       <ContactSection />
     </>
   )
