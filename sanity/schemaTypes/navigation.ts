@@ -34,6 +34,13 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
+      name: "isVisible",
+      title: "Show in Navigation",
+      type: "boolean",
+      description: "Toggle to show/hide this link in the navigation dock",
+      initialValue: true,
+    }),
+    defineField({
       name: "order",
       title: "Display Order",
       type: "number",
@@ -47,11 +54,12 @@ export default defineType({
       title: "title",
       subtitle: "href",
       order: "order",
+      isVisible: "isVisible",
     },
     prepare(selection) {
-      const { title, subtitle, order } = selection;
+      const { title, subtitle, order, isVisible } = selection;
       return {
-        title: `${order}. ${title}`,
+        title: `${order}. ${title}${!isVisible ? " (Hidden)" : ""}`,
         subtitle: subtitle,
       };
     },
