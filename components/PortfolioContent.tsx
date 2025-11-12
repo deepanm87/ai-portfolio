@@ -26,7 +26,7 @@ export default async function PortfolioContent() {
       <AchievementsSection />
       <ServicesSection />
       <BlogSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <ContactSection />
     </>
   )
