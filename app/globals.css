@@ -149,3 +149,7 @@
 .transform-3d {
   transform-style: preserve-3d;
 }
+
+button {
+  cursor: pointer;
+}
