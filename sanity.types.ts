@@ -415,11 +415,11 @@ export type Experience = {
   company?: string;
   position?: string;
   employmentType?:
-    | "full-time"
-    | "part-time"
-    | "contract"
-    | "freelance"
-    | "internship";
+    | "Full-Time"
+    | "Part-Time"
+    | "Contract"
+    | "Freelance"
+    | "Internship";
   location?: string;
   startDate?: string;
   endDate?: string;
