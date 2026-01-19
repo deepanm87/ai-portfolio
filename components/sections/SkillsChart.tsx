@@ -41,10 +41,12 @@ export function SkillsChart({ skills }: SkillsChartProps) {
           return null
         }
 
-        const displayLabel = category
-          .split("-")
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ")
+        const displayLabel = category === "ai-ml" 
+          ? "AI/ML"
+          : category
+              .split("-")
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")
 
         const chartData = categorySkills.map(skill => ({
           name: skill.name || "Unknown",

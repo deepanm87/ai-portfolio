@@ -19,8 +19,8 @@ export default async function PortfolioContent() {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
-      <ExperienceSection />
       <ProjectsSection />
+      <ExperienceSection />
       <EducationSection />
       <CertificationsSection />
       <AchievementsSection />
